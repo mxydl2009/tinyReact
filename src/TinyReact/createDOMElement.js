@@ -15,6 +15,8 @@ export default (virtualDOM) => {
     // 添加属性
     updateNodeElement(newElement, virtualDOM)
   }
+  // 将virtualDOM挂载到DOM对象的_virtualDOM属性上，便于更新后的virtualDOM与之进行差异化对比
+  newElement._virtualDOM = virtualDOM
   // 递归创建子节点
   virtualDOM.props.children.forEach(child => {
     mountElement(child, newElement)
