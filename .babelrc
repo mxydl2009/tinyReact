@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    [
+      "@babel/preset-react", // 配置JSX编译
+      {
+        "pragma": "TinyReact.createElement" // 将jsx中的React.createElement用TinyReact.createElement代替
+      }
+    ]
+  ]
+}
