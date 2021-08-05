@@ -1,0 +1,1 @@
+export default (virtualDOM) => virtualDOM && typeof virtualDOM.type === 'function'

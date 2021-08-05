@@ -5,6 +5,7 @@ const root = document.getElementById('root')
 const virtualDOM = (
   <div className="container">
     <h1>hello TinyReact</h1>
+    <Demo />
     <h2 data-test="data-test">data-test</h2>
     <div>
       嵌套外层
@@ -19,6 +20,24 @@ const virtualDOM = (
     <input type="text" value="" placeholder="请填写内容" />
   </div>
 )
+
+function Heart(props) {
+  return (
+    <div>
+      &hearts;
+      { props.title }
+    </div>
+  )
+}
+
+function Demo() {
+  // return (
+  //   <div>
+  //     心：<Heart />
+  //   </div>
+  // )
+  return <Heart title="hello react" />
+}
 
 // console.log(virtualDOM)
 TinyReact.render(virtualDOM, root)
