@@ -10,18 +10,25 @@ export default function mountComponent(virtualDOM, container) {
   if (isFunctionComponent(virtualDOM)) {
     // 函数组件, 直接调用函数得到返回的虚拟DOM
     nextVirtualDOM = buildFunctionComponent(virtualDOM)
-    // console.log(nextVirtualDOM);
-    if(isFunction(nextVirtualDOM)) {
-      // 需要再次判定 返回的虚拟DOM是否是组件类型，如果是，则继续调用mountComponent
-      mountComponent(nextVirtualDOM, container)
-    } else {
-      mountNativeElement(nextVirtualDOM, container)
-    }
+    // console.log(nextVirtualDOM)
   } else {
-
+    // 处理类组件
+    nextVirtualDOM = buildClassComponent(virtualDOM)
+  }
+  if(isFunction(nextVirtualDOM)) {
+    // 需要再次判定 返回的虚拟DOM是否是组件类型，如果是，则继续调用mountComponent
+    mountComponent(nextVirtualDOM, container)
+  } else {
+    mountNativeElement(nextVirtualDOM, container)
   }
 }
 
 function buildFunctionComponent (virtualDOM) {
   return virtualDOM.type(virtualDOM.props || {})
+}
+
+function buildClassComponent (virtualDOM) {
+  // 返回组件的虚拟DOM树
+  const component = new virtualDOM.type()
+  return component.render()
 }

@@ -6,6 +6,7 @@ const virtualDOM = (
   <div className="container">
     <h1>hello TinyReact</h1>
     <Demo />
+    <Alert />
     <h2 data-test="data-test">data-test</h2>
     <div>
       嵌套外层
@@ -37,6 +38,16 @@ function Demo() {
   //   </div>
   // )
   return <Heart title="hello react" />
+}
+
+class Alert extends TinyReact.Component {
+  render() {
+    return (
+      <div>
+        hello class component
+      </div>
+    )  
+  }
 }
 
 // console.log(virtualDOM)
