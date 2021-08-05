@@ -29,6 +29,6 @@ function buildFunctionComponent (virtualDOM) {
 
 function buildClassComponent (virtualDOM) {
   // 返回组件的虚拟DOM树
-  const component = new virtualDOM.type()
+  const component = new virtualDOM.type(virtualDOM.props || {})
   return component.render()
 }

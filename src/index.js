@@ -2,11 +2,26 @@ import TinyReact from './TinyReact'
 
 const root = document.getElementById('root')
 
+class Alert extends TinyReact.Component {
+  // constructor(props) {
+  //   super(props)
+  // }
+  render() {
+    return (
+      <div>
+        hello class component
+        { this.props.name }
+        { this.props.age }
+      </div>
+    )  
+  }
+}
+
 const virtualDOM = (
   <div className="container">
     <h1>hello TinyReact</h1>
     <Demo />
-    <Alert />
+    <Alert name="alert" age={18} />
     <h2 data-test="data-test">data-test</h2>
     <div>
       嵌套外层
@@ -38,16 +53,6 @@ function Demo() {
   //   </div>
   // )
   return <Heart title="hello react" />
-}
-
-class Alert extends TinyReact.Component {
-  render() {
-    return (
-      <div>
-        hello class component
-      </div>
-    )  
-  }
 }
 
 // console.log(virtualDOM)
