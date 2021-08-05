@@ -16,7 +16,7 @@ const virtualDOM = (
     { 2 === 2 && <div>2等于2则渲染</div> }
     <span>这是一段内容</span>
     <button onClick={() => { alert('clicked!') }}>点击我</button>
-    <input type="text" value="hello" placeholder="请填写内容" />
+    <input type="text" value="" placeholder="请填写内容" />
   </div>
 )
 
