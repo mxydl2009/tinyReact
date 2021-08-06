@@ -114,11 +114,11 @@ function Demo() {
 }
 
 // console.log(virtualDOM)
-TinyReact.render(<DemoRef />, root)
+TinyReact.render(virtualDOM, root)
 
-// setTimeout(() => {
-//   TinyReact.render(<DemoRef />, root)
-// }, 2000)
+setTimeout(() => {
+  TinyReact.render(modifiedDOM, root)
+}, 2000)
 
 // TinyReact.render(<Alert name={'hello'} age={'15'} />, root)
 
