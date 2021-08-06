@@ -14,6 +14,15 @@ class Alert extends TinyReact.Component {
       title: 'modified title'
     })
   }
+  componentWillReceiveProps(nextProps) {
+    console.log('will receive props', nextProps);
+  }
+  componentDidUpdate(prevProps) {
+    console.log('did update', prevProps);
+  }
+  componentWillUpdate() {
+    console.log('will update');
+  }
   render() {
     return (
       <div>
@@ -29,7 +38,7 @@ class Alert extends TinyReact.Component {
 
 const virtualDOM = (
   <div className="container">
-    <h1>hello TinyReact</h1>
+    <h3>hello TinyReact</h3>
     <Demo />
     <Alert name="alert" age={18} />
     <h2 data-test="data-test">data-test</h2>
@@ -49,14 +58,14 @@ const virtualDOM = (
 
 const modifiedDOM = (
   <div className="container">
-    <h1>hello TinyReact 已经修改过的</h1>
+    <h3>hello modified TinyReact</h3>
     <Demo />
     <Alert name="alert-modified" age={30} />
     <h2 data-test="data-test-123">data-test</h2>
-    <p>
+    <div>
       嵌套外层
       <div>嵌套内层</div>
-    </p>
+    </div>
     <h5>观察：这个将会改变</h5>
     {/* { 2 === 1 ? <div>2等于1则渲染</div>: <div>2不等于1则渲染</div> } */}
     { 2 === 1 && <div>如果2和1相等则渲染当前内容</div> }
@@ -77,12 +86,12 @@ function Heart(props) {
 }
 
 function Demo() {
-  // return (
-  //   <div>
-  //     心：<Heart />
-  //   </div>
-  // )
-  return <Heart title="hello react" />
+  return (
+    <div>
+      demo
+    </div>
+  )
+  // return <Heart title="hello react" />
 }
 
 // console.log(virtualDOM)
@@ -91,3 +100,9 @@ TinyReact.render(virtualDOM, root)
 setTimeout(() => {
   TinyReact.render(modifiedDOM, root)
 }, 2000)
+
+// TinyReact.render(<Alert name={'hello'} age={'15'} />, root)
+
+// setTimeout(() => {
+//   TinyReact.render(<Alert name={'heart'} age='18' />, root)
+// }, 2000)

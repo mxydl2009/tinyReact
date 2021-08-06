@@ -6,12 +6,12 @@ import isFunction from './isFunction'
  * @param {*} virtualDOM 
  * @param {*} container 
  */
-export default function mountElement(virtualDOM, container) {
+export default function mountElement(virtualDOM, container, oldDOM) {
   if (isFunction(virtualDOM)) {
     // 组件类型的渲染处理
-    mountComponent(virtualDOM, container)
+    mountComponent(virtualDOM, container, oldDOM)
   } else {
     // native类型的渲染处理
-    mountNativeElement(virtualDOM, container)    
+    mountNativeElement(virtualDOM, container, oldDOM)    
   }
 }
