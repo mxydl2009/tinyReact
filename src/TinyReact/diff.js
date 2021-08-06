@@ -1,3 +1,4 @@
+import createDOMElement from './createDOMElement'
 import mountElement from './mountElement'
 import updateNodeElement from './updateNodeElement'
 import updateTextNode from './updateTextNode'
@@ -27,6 +28,11 @@ export default function diff(virtualDOM, container, oldDOM) {
       virtualDOM.props.children.forEach((child, index) => {
         diff(child, oldDOM, oldDOM.childNodes[index])
       })
+    } else if (virtualDOM.type !== oldVirtualDOM.type && typeof virtualDOM.type !== 'function') {
+      // 类型不同, 且非组件类型，不需要比对，直接用新的DOM对象替换旧的DOM对象
+      const newElement = createDOMElement(virtualDOM)
+      // 替换
+      oldDOM.parentNode.replaceChild(newElement, oldDOM)
     }
   }
 }
