@@ -28,3 +28,6 @@
 - unmountNode.js: 卸载节点，并进行一系列的清理工作
 - isFunction.js: 判断是否是组件类型的虚拟DOM节点
 - isFunctionComponent.js: 判断是否是函数类型的组件
+## stack reconcile
+使用递归的方式来进行虚拟DOM的对比更新，边对比边操作DOM，这种递归过程是不能中断的，否则会丢失调用栈。
+递归协调方式如果任务占用主线程太久，就容易导致页面卡顿，用户体验不好
