@@ -1,3 +1,9 @@
+/**
+ * 处理元素的属性
+ * @param {*} newElement 新的DOM元素
+ * @param {*} virtualDOM 新的虚拟DOM
+ * @param {*} oldVirtualDOM 旧的虚拟DOM
+ */
 export default function updateNodeElement(newElement, virtualDOM, oldVirtualDOM) {
   // get props
   const newProps = virtualDOM.props || {}

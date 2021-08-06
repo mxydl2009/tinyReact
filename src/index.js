@@ -51,7 +51,7 @@ const modifiedDOM = (
     {/* { 2 === 1 ? <div>2等于1则渲染</div>: <div>2不等于1则渲染</div> } */}
     { 2 === 1 && <div>如果2和1相等则渲染当前内容</div> }
     { 2 === 2 && <div>2等于2则渲染</div> }
-    <span>这是一段被修改后的内容</span>
+    {/* <span>这是一段被修改后的内容</span> */}
     <button onClick={() => { alert('modified clicked!') }}>点击我</button>
     <input type="checkbox" value="" placeholder="请填写内容" />
   </div>
