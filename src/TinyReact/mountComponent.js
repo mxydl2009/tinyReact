@@ -30,5 +30,8 @@ function buildFunctionComponent (virtualDOM) {
 function buildClassComponent (virtualDOM) {
   // 返回组件的虚拟DOM树
   const component = new virtualDOM.type(virtualDOM.props || {})
-  return component.render()
+  let nextVirtualDOM = component.render()
+  // 将实例挂载到虚拟DOM上，便于之后获取该实例对象，从而可以使用setDOM将真实DOM存储在实例对象里
+  nextVirtualDOM.component = component
+  return nextVirtualDOM
 }

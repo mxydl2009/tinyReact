@@ -3,13 +3,23 @@ import TinyReact from './TinyReact'
 const root = document.getElementById('root')
 
 class Alert extends TinyReact.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: 'default title'
+    }
+  }
+  handleClick() {
+    this.setState({
+      title: 'modified title'
+    })
+  }
   render() {
     return (
       <div>
         hello class component
+        <h3>{ this.state.title }</h3>
+        <button onClick={() => { this.handleClick() }}>改变title</button>
         { this.props.name }
         { this.props.age }
       </div>
@@ -41,7 +51,7 @@ const modifiedDOM = (
   <div className="container">
     <h1>hello TinyReact 已经修改过的</h1>
     <Demo />
-    <Alert name="alert" age={30} />
+    <Alert name="alert-modified" age={30} />
     <h2 data-test="data-test-123">data-test</h2>
     <p>
       嵌套外层

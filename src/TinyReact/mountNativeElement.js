@@ -10,4 +10,10 @@ export default function mountNativeElement(virtualDOM, container) {
   let newElement = createDOMElement(virtualDOM)
   // 挂载到页面中
   container.appendChild(newElement)
+  // 首次渲染时，就将类的实例挂载到对象的虚拟DOM上，这样在挂载过程中，将真实DOM对象存储到类的实例上，便于之后进行diff
+  let component = virtualDOM.component
+  if (component) {
+   // 类组件
+   component.setDOM(newElement) 
+  }
 }
