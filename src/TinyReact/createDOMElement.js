@@ -21,5 +21,10 @@ export default (virtualDOM) => {
   virtualDOM.props.children.forEach(child => {
     mountElement(child, newElement)
   })
+
+  // 处理ref属性
+  if (virtualDOM.props.ref) {
+    virtualDOM.props.ref(newElement)
+  }
   return newElement
 }

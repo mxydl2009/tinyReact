@@ -7,6 +7,7 @@ import mountNativeElement from './mountNativeElement'
  */
 export default function mountComponent(virtualDOM, container, oldDOM) {
   let nextVirtualDOM = null
+  let component = null
   if (isFunctionComponent(virtualDOM)) {
     // 函数组件, 直接调用函数得到返回的虚拟DOM
     nextVirtualDOM = buildFunctionComponent(virtualDOM)
@@ -14,12 +15,20 @@ export default function mountComponent(virtualDOM, container, oldDOM) {
   } else {
     // 处理类组件
     nextVirtualDOM = buildClassComponent(virtualDOM)
+    component = nextVirtualDOM.component
+    // 处理类组件的ref属性
+    if (component && component.props.ref) {
+      component.props.ref(component)
+    }
   }
   if(isFunction(nextVirtualDOM)) {
     // 需要再次判定 返回的虚拟DOM是否是组件类型，如果是，则继续调用mountComponent
     mountComponent(nextVirtualDOM, container, oldDOM)
   } else {
     mountNativeElement(nextVirtualDOM, container, oldDOM)
+  }
+  if (component) {
+    component.componentDidMount()
   }
 }
 

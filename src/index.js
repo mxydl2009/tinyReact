@@ -36,6 +36,25 @@ class Alert extends TinyReact.Component {
   }
 }
 
+class DemoRef extends TinyReact.Component {
+  constructor(props) {
+    super(props)
+  }
+  handleClick() {
+    console.log(this.input.value)
+    console.log(this.alert)
+  }
+  render() {
+    return (
+      <div>
+        <input type="text" ref={input => this.input = input}/>
+        <button onClick={ () => { this.handleClick() }}>点击</button>
+        <Alert name="hello" age="nihao" ref={alert => this.alert = alert} />
+      </div>
+    )
+  }
+}
+
 const virtualDOM = (
   <div className="container">
     <h3>hello TinyReact</h3>
@@ -95,11 +114,11 @@ function Demo() {
 }
 
 // console.log(virtualDOM)
-TinyReact.render(virtualDOM, root)
+TinyReact.render(<DemoRef />, root)
 
-setTimeout(() => {
-  TinyReact.render(modifiedDOM, root)
-}, 2000)
+// setTimeout(() => {
+//   TinyReact.render(<DemoRef />, root)
+// }, 2000)
 
 // TinyReact.render(<Alert name={'hello'} age={'15'} />, root)
 
